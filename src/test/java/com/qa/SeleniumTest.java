@@ -5,12 +5,13 @@ import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class SeleniumTest
 {
 
     ChromeDriver driver;
@@ -22,11 +23,15 @@ public class AppTest
     }
 
     @Test
-    public void shouldAnswerWithTrue()
+    public void exampleSeleniumTest()
     {
-        driver.manage().window().maximize();
-        driver.get("http://google.com");
         try {
+            driver.manage().window().maximize();
+            driver.get("http://google.com");
+            Thread.sleep(500);
+            driver.findElement(By.name("q")).sendKeys("funny cat pics");
+            Thread.sleep(500);
+            driver.findElement(By.name("btnK")).click();
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
