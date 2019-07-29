@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
@@ -29,7 +30,11 @@ public class SeleniumTest
             driver.manage().window().maximize();
             driver.get("http://google.com");
             Thread.sleep(500);
-            driver.findElement(By.name("q")).sendKeys("funny cat pics");
+            WebElement element = driver.findElement(By.name("q"));
+
+            assertTrue(element.isDisplayed());
+
+            element.sendKeys("funny cat pics");
             Thread.sleep(500);
             driver.findElement(By.name("btnK")).click();
             Thread.sleep(3000);
