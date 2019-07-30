@@ -2,12 +2,10 @@ package com.qa.models;
 
 import org.springframework.data.annotation.Id;
 
-
 public class Customer {
 
     @Id
     private String id;
-
     private String firstName;
     private String lastName;
 
@@ -21,8 +19,8 @@ public class Customer {
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%s, firstName='%s', lastName='%s']",
-                id, firstName, lastName);
+                "Customer[id=%s, firstName='%s', lastName='%s']", id, firstName, lastName
+        );
     }
 
 }

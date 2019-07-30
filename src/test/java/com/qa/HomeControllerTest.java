@@ -1,4 +1,4 @@
-package com.qa.mockito;
+package com.qa;
 
 import com.qa.controllers.HomeController;
 import com.qa.models.Customer;

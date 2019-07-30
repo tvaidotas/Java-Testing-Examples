@@ -1,6 +1,5 @@
-package com.qa.mockito;
+package com.qa;
 
-import com.qa.App;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
