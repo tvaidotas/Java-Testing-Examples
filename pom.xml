@@ -55,12 +55,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.4</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -70,17 +64,21 @@
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.0</version>
+                    <version>0.5.10.201208310627</version>
+                    <configuration>
+                        <output>file</output>
+                        <append>true</append>
+                    </configuration>
                     <executions>
                         <execution>
-                            <id>default-prepare-agent</id>
+                            <id>jacoco-initialize</id>
                             <goals>
                                 <goal>prepare-agent</goal>
                             </goals>
                         </execution>
                         <execution>
-                            <id>default-report</id>
-                            <phase>prepare-package</phase>
+                            <id>jacoco-site</id>
+                            <phase>verify</phase>
                             <goals>
                                 <goal>report</goal>
                             </goals>
