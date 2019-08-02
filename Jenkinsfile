@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    tools {
+            MVN 'mvn'
+            JDK 'jdk'
+    }
     stages {
         stage('clean'){
             steps {
