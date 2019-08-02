@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class AppTest {
 
     @Mock
-    App app;
+    private App app;
 
     @Test
     public void applicationContextTest() {

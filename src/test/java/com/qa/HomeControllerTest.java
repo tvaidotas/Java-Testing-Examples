@@ -8,9 +8,10 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
+//import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -56,7 +57,9 @@ public class HomeControllerTest {
         List<Customer> myList = new ArrayList<>();
         myList.add(customer);
         myList.add(customer2);
+
         when(repository.findAll()).thenReturn(myList);
+
         assertEquals(repository.findAll(), myList);
         this.restTemplate.getForObject("http://localhost:" + port + "/addDefaultPeople", String.class);
     }
