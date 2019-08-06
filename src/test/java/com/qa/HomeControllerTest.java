@@ -14,6 +14,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -54,8 +55,8 @@ public class HomeControllerTest {
 
     @Test
     public void testAddCustomer() {
-        Customer customer = new Customer();
-        customer.toString();
+        Customer customer = new Customer("a", "b");
+        assertEquals(customer.toString(), "Customer[id=null, firstName='a', lastName='b']");
         repository.save(customer);
         this.restTemplate.postForEntity("http://localhost:" + port + "/saveCustomer", customer, Void.class);
     }
