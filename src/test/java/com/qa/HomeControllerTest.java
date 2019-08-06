@@ -55,7 +55,7 @@ public class HomeControllerTest {
     @Test
     public void testAddCustomer() {
         Customer customer = new Customer();
-        //System.out.println(customer.toString());
+        customer.toString();
         repository.save(customer);
         this.restTemplate.postForEntity("http://localhost:" + port + "/saveCustomer", customer, Void.class);
     }
