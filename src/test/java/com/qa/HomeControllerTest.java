@@ -8,18 +8,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -39,29 +33,31 @@ public class HomeControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void contextLoads() throws Exception {
+    public void contextLoads() {
         assertThat(controller).isNotNull();
     }
 
     @Test
-    public void testHomepageReturn() throws Exception {
+    public void testHomepageReturn() {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/", String.class))
                 .contains("Welcome to homepage");
     }
 
     @Test
-    public void testAddDefaultPeople() throws Exception {
+    public void testAddDefaultPeople() {
         Customer customer = new Customer("a", "b");
         Customer customer2 = new Customer();
         repository.save(customer);
-        List<Customer> myList = new ArrayList<>();
-        myList.add(customer);
-        myList.add(customer2);
+        repository.save(customer2);
+        this.restTemplate.getForObject("http://localhost:" + port + "/addDefaultCustomers", Void.class);
+    }
 
-        when(repository.findAll()).thenReturn(myList);
-
-        assertEquals(repository.findAll(), myList);
-        this.restTemplate.getForObject("http://localhost:" + port + "/addDefaultPeople", String.class);
+    @Test
+    public void testAddCustomer() {
+        Customer customer = new Customer();
+        System.out.println(customer.toString());
+        repository.save(customer);
+        this.restTemplate.postForEntity("http://localhost:" + port + "/saveCustomer", customer, Void.class);
     }
 
 }

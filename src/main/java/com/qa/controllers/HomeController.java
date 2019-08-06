@@ -3,10 +3,7 @@ package com.qa.controllers;
 import com.qa.models.Customer;
 import com.qa.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin("http://localhost:8080")
@@ -20,13 +17,16 @@ public class HomeController {
         return "Welcome to homepage";
     }
 
-    @RequestMapping(value = "/addDefaultPeople", method = RequestMethod.GET)
+    @RequestMapping(value = "/addDefaultCustomers", method = RequestMethod.GET)
     public void addDefaultPeople(){
         repository.save(new Customer("Alice", "Smith"));
+        repository.save(new Customer("John", "Johnson"));
+        repository.save(new Customer("Tim", "White"));
+    }
 
-        for (Customer customer : repository.findAll()) {
-            System.out.println(customer);
-        }
+    @RequestMapping(value = "/saveCustomer", method = RequestMethod.POST)
+    public void saveCustomer(@RequestBody Customer customer){
+        repository.save(customer);
     }
 
 }
